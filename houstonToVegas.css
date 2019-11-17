@@ -1,0 +1,25 @@
+body{
+    background-image: url("../Images/IMG_1778.jpeg");
+    background-repeat: repeat;
+    background-position: 40% 40%;
+    background-size: cover;
+ 
+}
+
+
+
+.btn-light{
+    border-radius: 10px;
+}
+
+footer{
+    font-size: medium;
+}
+
+nav{
+    font-size: large;
+}
+
+.card {
+    background: rgba(204, 204, 204, 0.6);
+}

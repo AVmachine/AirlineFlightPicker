@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Page</title>
+
+    <link rel="stylesheet" href="houstonToVegas.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+        <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" style="margin:0; padding:0;">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Cheapest Flights to Select Cities</a>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                  <ul class="navbar-nav mr-auto nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link" href="Default.aspx">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Travel.aspx">Travel</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+          
+    
+    <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+            color: black;
+            font-weight: 900;
+            font-style: normal;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+        .row{
+            border-bottom: 1px dotted black;
+        }
+
+        .btn{
+            height: 100%;
+        }
+        
+    </style>
+    <script>
+        $( function() {
+            $(".datepicker" ).datepicker();
+        }); 
+
+    </script>
+    
+
+    <div class="container-fluid">
+        <div class="col">
+            <div class="row justify-content-center"><h3>Choose a city below: </h3></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                         Select your city of Residence:
+                    </div>
+                     <div class="row text-center">
+                         <div class="col-12 col-sm-4">
+                             <input type="radio" name="cityFrom" value="LAS" checked/>
+                             <label for="vegas">Vegas</label>
+                         </div>
+                         <div class="col-12  col-sm-4">
+                             <input type="radio" name="cityFrom" value="IAH" />
+                             <label for="houston">Houston</label>
+                         </div>
+                         <div class="col-12  col-sm-4">
+                            <input type="radio" name="cityFrom" value="ORD" />
+                            <label for="chicago">Chicago</label>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                         Select your city of your loved one:
+                    </div>
+                    <div class="row text-center">
+                         <div class="col-12 col-sm-4">
+                             <input type="radio" name="cityTo" value="LAS" />
+                             <label for="vegas">Vegas</label>
+
+                         </div>
+                         <div class="col-12  col-sm-4">
+                             <input type="radio" name="cityTo" value="IAH" checked/>
+                             <label for="houston">Houston</label>
+                         </div>
+                         <div class="col-12  col-sm-4">
+                            <input type="radio" name="cityTo" value= "ORD" />
+                            <label for="chicago">Chicago</label>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        Please select the Date of Departure:
+                    </div>
+                    <div class="row">
+                        <input type="text" class="datepicker" name="tripStart"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        Please select the Date of Return: 
+                    </div>
+                    <div class="row">
+                        <input type="text" class="datepicker" name="tripEnd"/>
+                    </div>
+                </div>
+                <div class="col-md-4 p-0">
+                    <div class="row justify-content-center m-0"> 
+                        <input type="button" onClick="onSubmit2()" class="btn btn-lg btn-secondary btn-block" value="Submit"/>
+                    </div>
+                 </div>
+            </div>
+           
+             <div class="row" id="flightsDepart">
+                5 Cheapest Flights Departing
+            </div>
+            
+            <div class="row" id="flightsReturn">
+                5 Cheapest Flights Returning
+            </div>
+           
+        </div>
+     </div>
+
+    <script>
+
+        function onSubmit2() {
+            var dateFrom = $("[name=tripStart]").val();
+            var dateTo = $("[name=tripEnd]").val();
+            var cityFrom = $("input[name='cityFrom']:checked").val();
+            var cityTo = $("input[name='cityTo']:checked").val();
+            var dateFromArray = dateFrom.split("/");
+            var dateToArray = dateTo.split("/");
+
+           
+            var dayFrom = dateFromArray[1];
+            var monthFrom = dateFromArray[0];
+            var yearFrom = dateFromArray[2];
+
+            
+
+            var dayTo = dateToArray[1];
+            var monthTo = dateToArray[0];
+            var yearTo = dateToArray[2];
+                                                               
+
+            console.log(dayFrom + " " + monthFrom + " " + yearFrom + " " + dayTo + " " + monthTo + " " + yearTo);
+            var urlFrom =  "https://api.skypicker.com/flights?flyFrom=" + cityFrom+ "&to=" + cityTo + "&dateTo=" + dayFrom + "/" + monthFrom + "/" + yearFrom + "&partner=picky";
+
+            console.log(urlFrom);
+
+            $.ajax({
+                url: urlFrom,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    console.log(data.data);
+                    for (var i = 4; i >= 0; i--) {
+                        var airlineFrom = data.data[i].airlines[0];
+                        var timeDepartFrom =  moment.unix(data.data[i].dTimeUTC)._d;
+                        var timeArriveFrom = moment.unix(data.data[i].aTimeUTC)._d;
+                        var costFrom = data.data[i].price;
+                        var deeplinkFrom = data.data[i].deep_link;
+
+                        switch (airlineFrom) {
+                            case "NK":
+                                airlineFrom = "Spirit";
+                                break
+                            case "UA":
+                                airlineFrom = "United";
+                                break
+                            case "F9":
+                                airlineFrom = "Frontier";
+                                break
+                             case "DL":
+                                airlineFrom = "Delta";
+                                break
+                            case "AA":
+                                airlineFrom = "American Airlines";
+                                break
+                            default:
+                                airlineFrom = airlineFrom;
+                        }
+                      
+
+                        if (data.data[i].route.length > 1) {
+                            var layoverListFrom = [];
+                            for (var j = 0; j < data.data[i].route.length; j++) {
+                                layoverListFrom.push(data.data[i].route[j].cityTo);
+                            }
+                        }
+
+                        var layoverStringFrom;
+
+                        if (layoverListFrom && layoverListFrom.length == 1) {
+                            layoverStringFrom = layoverListFrom[0];
+                        }
+                        else if (layoverListFrom && layoverListFrom.length > 1) {
+                            layoverStringFrom = layoverListFrom[0];
+                            for (var z = 1; z < layoverListFrom.length - 1; z++) {
+
+                                layoverStringFrom += ", " + layoverListFrom[z];
+                            }
+                        }
+                        else
+                            layoverStringFrom = "No Layovers, lucky you!";
+
+                        $("#flightsDepart").after('<div class="row"></div>');
+                        $("#flightsDepart").next().append('<div class="col-md-3"> <div class="row">'+airlineFrom+'</div></div> ');
+                        $("#flightsDepart").next().append('<div class="col-md-5"> <div class="row">' + timeDepartFrom + ' to ' + timeArriveFrom + '</div></div> ');
+                        $("#flightsDepart").next().append('<div class="col-md-3"> <div class="row">' + layoverStringFrom + '</div></div> ');
+                        $("#flightsDepart").next().append('<div class="col-md-1"> <div class="row"><a href="'+deeplinkFrom+'">'+costFrom+' Euros'+'</a></div></div> ');
+
+                    }
+                   
+                },
+                error: function () {
+                    alert("Hmm, something went wrong. Just google it. :)");
+                },
+                
+            });
+
+
+            var urlTo =  "https://api.skypicker.com/flights?flyFrom=" + cityTo+ "&to=" + cityFrom + "&dateTo=" + dayTo + "/" + monthTo + "/" + yearTo + "&partner=picky";
+            
+            $.ajax({
+                url: urlTo,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    console.log(data.data);
+                    for (var i = 4; i >= 0; i--) {
+                        var airlineTo = data.data[i].airlines[0];
+                        var timeDepartTo = moment.unix(data.data[i].dTimeUTC)._d;
+                        var timeArriveTo = moment.unix(data.data[i].aTimeUTC)._d;
+                        var costTo = data.data[i].price;
+                        var deeplinkTo = data.data[i].deep_link;
+
+
+                        switch (airlineTo) {
+                            case "NK":
+                                airlineTo = "Spirit";
+                                break
+                            case "UA":
+                                airlineTo = "United";
+                                break
+                            case "F9":
+                                airlineTo = "Frontier";
+                                break
+                             case "DL":
+                                airlineTo = "Delta";
+                                break
+                            case "AA":
+                                airlineTo = "American Airlines";
+                                break
+                            default:
+                                airlineTo = airlineTo;
+                        }
+                        
+                       if (data.data[i].route.length > 1) {
+                            var layoverListTo = [];
+                            for (var j = 0; j < data.data[i].route.length; j++) {
+                                layoverListTo.push(data.data[i].route[j].cityTo);
+                            }
+                        }
+
+                        var layoverStringTo;
+
+                        if (layoverListTo && layoverListTo.length == 1) {
+                            layoverStringTo = layoverListTo[0];
+                        }
+                        else if (layoverListTo && layoverListTo.length > 1) {
+                            layoverStringTo = layoverListTo[0];
+                            for (var z = 1; z < layoverListTo.length - 1; z++) {
+
+                                layoverStringTo += ", " + layoverListTo[z];
+                            }
+                        }
+                        else
+                            layoverStringTo = "No Layovers, lucky you!";
+
+                        $("#flightsReturn").after('<div class="row"></div>');
+                        $("#flightsReturn").next().append('<div class="col-md-3"> <div class="row">'+airlineTo+'</div></div> ');
+                        $("#flightsReturn").next().append('<div class="col-md-5"> <div class="row">' + timeDepartTo + ' to ' + timeArriveTo + '</div></div> ');
+                        $("#flightsReturn").next().append('<div class="col-md-3"> <div class="row">' + layoverStringTo + '</div></div> ');
+                        $("#flightsReturn").next().append('<div class="col-md-1"> <div class="row"><a href="'+deeplinkTo+'">'+costTo+' Euros'+'</a></div></div> ');
+
+                    }
+                   
+                },
+                error: function () {
+                    alert("Hmm, something went wrong. Just google it. :)");
+                },
+                
+            });
+
+        }
+
+
+    </script>
+</body>
+</html>
