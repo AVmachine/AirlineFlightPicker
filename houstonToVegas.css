@@ -1,8 +1,5 @@
 body{
-    background-image: url("../Images/IMG_1778.jpeg");
-    background-repeat: repeat;
-    background-position: 40% 40%;
-    background-size: cover;
+    background-color: grey;
  
 }
 
@@ -23,3 +20,13 @@ nav{
 .card {
     background: rgba(204, 204, 204, 0.6);
 }
+
+#carouselExampleIndicators{
+    height: 200px;
+}
+
+img{
+    margin: auto;
+    height: 200px;
+}
+
