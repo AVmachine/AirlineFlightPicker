@@ -169,9 +169,26 @@
             var monthTo = dateToArray[0];
             var yearTo = dateToArray[2];
 
+            var today = new Date();
+            var todayDay = parseInt(today.getDate());
+            var todayMonth = parseInt(today.getMonth()+1);
+            var todayYear = parseInt(today.getFullYear());
 
 
-            if (cityFrom == cityTo)
+
+            if(parseInt(yearFrom) < todayYear)
+            {
+                alert("Departing date must be greater than or equal to today")
+            }
+            else if (parseInt(monthFrom) < todayMonth)
+            {
+                alert("Departing date must be greater than or equal to today")
+            }
+            else if (parseInt(dayFrom) < todayDay)
+            {
+                alert("Departing date must be greater than or equal to today")
+            }
+            else if (cityFrom == cityTo)
             {
                 alert("You must choose two different cities");
             }
@@ -229,11 +246,18 @@
                 success: function (data) {
                     console.log(data.data);
                     for (var i = 4; i >= 0; i--) {
+                        try
+                        {
                         var airlineFrom = data.data[i].airlines[0];
                         var timeDepartFrom =  moment.unix(data.data[i].dTimeUTC)._d;
                         var timeArriveFrom = moment.unix(data.data[i].aTimeUTC)._d;
                         var costFrom = data.data[i].price;
                         var deeplinkFrom = data.data[i].deep_link;
+                        }catch (err)
+                        {
+                            alert("There was an error with the date of departure, please choose a different date of departure. The page will be reloaded now.")
+                            location.reload()
+                        }
 
                         switch (airlineFrom) {
                             case "NK":
@@ -304,11 +328,17 @@
                 success: function (data) {
                     console.log(data.data);
                     for (var i = 4; i >= 0; i--) {
+                        try{
                         var airlineTo = data.data[i].airlines[0];
                         var timeDepartTo = moment.unix(data.data[i].dTimeUTC)._d;
                         var timeArriveTo = moment.unix(data.data[i].aTimeUTC)._d;
                         var costTo = data.data[i].price;
                         var deeplinkTo = data.data[i].deep_link;
+                        }catch (err)
+                        {
+                            alert("There was an error with the date of return, please choose a different date of return. The page will be reloaded now.")
+                            location.reload()
+                        }
 
 
                         switch (airlineTo) {
